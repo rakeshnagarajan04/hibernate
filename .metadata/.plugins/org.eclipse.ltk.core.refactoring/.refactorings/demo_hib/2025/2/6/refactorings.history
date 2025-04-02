@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;com.hiber.demo_hib.Alien.aid&apos; in &apos;com.hiber.demo_hib.Alien&apos;&#x0D;&#x0A;- Original project: &apos;demo_hib&apos;&#x0D;&#x0A;- Original element: &apos;com.hiber.demo_hib.Alien.aid&apos;&#x0D;&#x0A;- Getter method name: &apos;getAid&apos;&#x0D;&#x0A;- Setter method name: &apos;setAid&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;aid, ...&apos;" flags="589830" getter="getAid" id="org.eclipse.jdt.ui.self.encapsulate" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.hiber.demo_hib{Alien.java[Alien^aid" insertion="-1" setter="setAid" stamp="1738937088071" version="1.0" visibility="1"/>
+</session>

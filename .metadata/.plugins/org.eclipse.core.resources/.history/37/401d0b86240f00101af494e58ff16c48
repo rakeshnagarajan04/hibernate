@@ -1,0 +1,48 @@
+package com.FetchingHibernate.hibernate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+@Entity
+
+// we have 3 names classname , entityname , table name (only change table name)
+
+@Table(name="hyb2")
+public class num {
+	@Id
+	private int id;
+	//transient drop the coloumn
+
+//	@Transient  --> ignore this field
+	private fullName name;
+//	@Column(name="fav_color")
+	private String color;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public fullName getName() {
+		return name;
+	}
+	public void setName(fullName name) {
+		this.name = name;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	@Override
+	public String toString() {
+		return "num [id=" + id + ", name=" + name + ", color=" + color + "]";
+	}
+	
+
+}

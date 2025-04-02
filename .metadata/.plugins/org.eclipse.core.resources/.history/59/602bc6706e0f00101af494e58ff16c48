@@ -1,0 +1,61 @@
+package com.FetchingHibernate.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.BootstrapServiceRegistryBuilder;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+
+
+/**
+ * Relational maping 
+ * 
+ * 4 types
+ * one to one
+ * one to many
+ * many to one
+ * many to many
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	Laptop laptop = new Laptop();
+    	laptop.setLid(102);
+    	laptop.setLname("Dell");
+    	
+    	
+        Student s = new Student();
+        s.setName("Navin");
+        s.setRollno(2);
+        s.setMarks(50);
+        s.setLaptop(laptop);
+        
+        
+//        al.setId(4);
+//        al.setName("ru");
+//        al.setColor("Black");
+        
+        Configuration con = new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
+        
+        ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(con.getProperties()).build();
+        
+        //buildsession is depricated so we using another method
+        SessionFactory sf =  con.buildSessionFactory(reg);
+        
+        Session session = sf.openSession();
+        
+        Transaction tx = session.beginTransaction();
+        
+        session.save(laptop);
+        session.save(s);
+//        al = (num)session.get(num.class, 1);
+        
+        session.getTransaction().commit();
+        
+//        System.out.println(al);
+    }
+}

@@ -1,0 +1,5 @@
+package com.FetchingHibernate.hibernate;
+
+public class Laptop {
+
+}

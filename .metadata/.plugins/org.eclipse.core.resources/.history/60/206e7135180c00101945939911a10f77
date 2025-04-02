@@ -1,0 +1,30 @@
+package com.FetchingHibernate.hibernate;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        num al =new num();
+        
+        al.setId(1);
+        al.setName("Rakesh");
+        al.setColor("Black");
+        
+        Configuration con = new Configuration().configure();
+        
+        //buildsession is depricated so we using another method
+        SessionFactory sf =  con.buildSessionFactory();
+        
+        Session session = sf.openSession();
+        
+        session.save(al);
+    }
+}

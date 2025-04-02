@@ -1,0 +1,180 @@
+package jdbcExe1;
+import java.sql.*;
+
+public class jdbcExe1 {
+	public static void readRecords() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		String query="select * from student";
+		Connection con=DriverManager.getConnection(url, id, password);
+		Statement st=con.createStatement();
+		ResultSet rs=st.executeQuery(query);
+		while(rs.next()) {
+			System.out.println("id "+rs.getInt(1));
+			System.out.println("name "+rs.getString(2));
+			System.out.println("Gpa "+rs.getInt(3));
+		}
+		
+		con.close();
+	}
+	public static void updateRecords() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		String query="insert into employee values (2,'thiru',40000)";
+		Connection con=DriverManager.getConnection(url, id, password);
+		Statement st=con.createStatement();
+		int n=st.executeUpdate(query);
+		System.out.println("num of affected row "+n);
+		
+		con.close();
+	}
+	public static void updateRecordsVariables() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		int id1=5;
+		String name="varun";
+		int sal=123445;
+		String query="insert into employee values ("+id1+",'"+name+"',"+sal+");";
+		Connection con=DriverManager.getConnection(url, id, password);
+		Statement st=con.createStatement();
+		int n=st.executeUpdate(query);
+		System.out.println("num of affected row "+n);
+		
+		con.close();
+	}
+	//prepare statement for updating table using prepared statement
+	public static void updateRecordsPST() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		int id1=6;
+		String name="arun";
+		int sal=1200000;
+		String query="insert into employee values (?,?,?)";
+		Connection con=DriverManager.getConnection(url, id, password);
+		PreparedStatement pst=con.prepareStatement(query);
+		pst.setInt(1,id1);
+		pst.setString(2, name);
+		pst.setInt(3, sal);
+		int rows=pst.executeUpdate();
+		System.out.println("num of affected row "+rows);
+		
+		con.close();
+	}
+	public static void delete() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		int id1=5;
+		String query="delete from employee where emp_id="+id1;
+		Connection con=DriverManager.getConnection(url, id, password);
+		Statement st=con.createStatement();
+		int n=st.executeUpdate(query);
+		System.out.println("num of affected row "+n);
+		
+		con.close();
+	}
+	public static void update() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		int id1=5;
+		String query="update employee set emp_id=3 where ename='varun'";
+		Connection con=DriverManager.getConnection(url, id, password);
+		Statement st=con.createStatement();
+		int n=st.executeUpdate(query);
+		System.out.println("num of affected row "+n);
+		
+		con.close();
+	}
+	
+	public static void storeProcedure() throws SQLException {
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		Connection con=DriverManager.getConnection(url, id, password);
+		CallableStatement cst=con.prepareCall("{call getEmp}");
+		ResultSet rs=cst.executeQuery();
+		
+		while(rs.next()) {
+			System.out.println("id "+rs.getInt(1));
+			System.out.println("name "+rs.getString(2));
+			System.out.println("Gpa "+rs.getInt(3));
+		}
+		con.close();
+	}
+	
+	public static void storeProcedure2() throws SQLException {
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		int var=2;
+		Connection con=DriverManager.getConnection(url, id, password);
+		CallableStatement cst=con.prepareCall("{call getEmpId(?)}");
+		cst.setInt(1, var);
+		ResultSet rs=cst.executeQuery();
+		
+		while(rs.next()) {
+			System.out.println("id "+rs.getInt(1));
+			System.out.println("name "+rs.getString(2));
+			System.out.println("Gpa "+rs.getInt(3));
+		}
+		con.close();
+	}
+	public static void getEnameBySp() {
+		try {
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		int var=2;
+		Connection con = DriverManager.getConnection(url, id, password);
+		CallableStatement cst = con.prepareCall("{call GetNameById(?,?)}");
+		cst.setInt(1, var);
+		cst.registerOutParameter(2, Types.VARCHAR);
+		cst.executeUpdate();
+		System.out.println(cst.getString(2));
+		con.close();
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	//commit and autocommit
+	public static void update2() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		int id1=5;
+		String query = "update employee set emp_id=3 where emp_id=1";
+		String query2 ="update employee set emp_id=3 where emp_id=2";
+		Connection con=DriverManager.getConnection(url, id, password);
+		Statement st=con.createStatement();
+		int n=st.executeUpdate(query);
+		System.out.println("num of affected row "+n);
+		int n1=st.executeUpdate(query2);
+		System.out.println("num of affected row "+n1);
+		con.close();
+	}
+	
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+//		update();
+//		storeProcedure2();
+//		getEnameBySp();
+		update2();
+		
+		//jdbc have 3 type of statement 
+		//1 normal statement
+		//2 prepared statement
+		//callable statement
+		
+		
+		
+		
+
+	}
+
+}

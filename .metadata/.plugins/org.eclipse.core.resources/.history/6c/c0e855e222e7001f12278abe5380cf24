@@ -1,0 +1,22 @@
+package com.Hybernate.demoHybe;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+//        int menu = 
+        int menu = App.n();
+//        menu.n();
+        System.out.println(menu);
+    }
+    
+    static int n() {
+    	System.out.println("meth");
+    	return 5;
+    }
+}

@@ -1,0 +1,14 @@
+package logic;
+
+public class MultiWithout {
+	public static void main(String[] args) {
+		int a = 5;
+		int b = 5;
+		while(b>0) {
+			a+=a;
+			b--;
+		}
+		System.out.println(a);
+	}
+
+}

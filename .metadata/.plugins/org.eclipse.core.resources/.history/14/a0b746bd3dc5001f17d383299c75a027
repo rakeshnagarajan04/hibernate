@@ -1,0 +1,30 @@
+package jdbcExe1;
+import java.sql.*;
+
+public class jdbcExe1 {
+	public static void readRecords() throws Exception{
+		String url="jdbc:mysql://localhost:3306/jdbcdemo";
+		String id="root";
+		String password="root";
+		String query="select * from student";
+		Connection con=DriverManager.getConnection(url, id, password);
+		Statement st=con.createStatement();
+		ResultSet rs=st.executeQuery(query);
+		while(rs.next()) {
+			System.out.println("id "+rs.getInt(1));
+			System.out.println("name "+rs.getString(2));
+			System.out.println("Gpa "+rs.getInt(3));
+		}
+		
+		con.close();
+	}
+
+	public static void main(String[] args) throws SQLException {
+		// TODO Auto-generated method stub
+		readRecords();
+		
+		
+
+	}
+
+}

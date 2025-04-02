@@ -1,0 +1,38 @@
+package logic;
+import java.util.*;
+import java.util.stream.Collectors;
+public class Anagram {
+	public static boolean anag(char[] arr,char[] arr2) {
+		int count = 0;
+		for(int i=0;i<arr.length;i++) {
+			for(int j=0;j<arr.length;j++) {
+				if(arr[i]==arr2[j]) {
+					count++;
+				}
+			}
+			if(count==0) {
+				return false;
+			}	
+		}
+		return true;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scn = new Scanner(System.in);
+		String str = scn.nextLine();
+		String str2 = scn.nextLine();
+		
+		char[] arr = str.toCharArray();
+		char[] arr2 = str2.toCharArray();
+		
+		boolean bool = anag(arr,arr2);
+		System.out.println(bool);
+//		Character[] charObjectArray = Arrays.toObject(arr);
+//		List<Character> lst = Arrays.stream(arr).collect(Collectors.toList());
+		
+		
+
+	}
+
+}

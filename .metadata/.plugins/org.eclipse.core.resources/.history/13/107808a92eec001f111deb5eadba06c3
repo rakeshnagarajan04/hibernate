@@ -1,0 +1,31 @@
+package logic;
+
+public class MultiWithout {
+	public static void main(String[] args) {
+		int a = 5;
+		int b = 5;
+		int n=0;
+		int m=0;
+		while(b>0) {//5
+			n=n+a; 
+			b--;
+		}
+		System.out.println(n);
+		
+//		without using loop
+		int f = muti(a,b);
+		System.out.println(f);
+		
+	}
+	static int m=0;
+	static int muti(int a,int b) {
+		if(b>0) {
+			m=m+a;
+			b--;
+			muti(a,b);
+		}
+		return m;
+		
+	}
+
+}
